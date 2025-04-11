@@ -23,6 +23,14 @@ jobs:
         with:
           workload_identity_provider: '${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}'
 
+      - name: 'Set up gcloud CLI'
+        uses: 'google-github-actions/setup-gcloud@v1'
+        with:
+          project_id: '${{ secrets.GCP_PROJECT }}'
+
+      - name: 'Configure Docker for Google Cloud'
+        run: gcloud auth configure-docker
+
       - name: 'Build and Push Container'
         run: |-
           docker build --tag "${{ secrets.DOCKER_TAG }}" .
