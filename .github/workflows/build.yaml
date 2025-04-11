@@ -1,0 +1,29 @@
+name: 'Build Contaner and Push to Container Registry'
+
+on:
+  push:
+    branches:
+      - '"main"'
+
+jobs:
+  deploy:
+    runs-on: 'ubuntu-latest'
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
+
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: '${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}'
+
+      - name: 'Build and Push Container'
+        run: |-
+          docker build --tag "${{ secrets.DOCKER_TAG }}" .
+          docker push "${{ secrets.DOCKER_TAG }}"
