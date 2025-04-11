@@ -3,7 +3,7 @@ name: 'Build Contaner and Push to Container Registry'
 on:
   push:
     branches:
-      - '"main"'
+      - main
 
 jobs:
   deploy:
