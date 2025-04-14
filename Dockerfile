@@ -6,7 +6,7 @@ COPY . .
 RUN npm run build
 
 FROM nginx:stable-alpine
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
 COPY nginx.template.conf /etc/nginx/templates/default.conf.template
 ENV PORT 8080
 EXPOSE 8080
