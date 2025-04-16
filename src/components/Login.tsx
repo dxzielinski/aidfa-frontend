@@ -14,11 +14,13 @@ const Login: React.FC = () => {
       });
 
       const data = await response.json();
-      if (data.idToken) {
+      console.log('Login response:', data);
+
+      if (response.ok && data.idToken) {
         localStorage.setItem('token', data.idToken);
         setMessage('Login successful!');
       } else {
-        setMessage('Login failed.');
+        setMessage(data.detail || 'Login failed.');
       }
     } catch (error) {
       console.error(error);
