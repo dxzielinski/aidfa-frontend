@@ -1,63 +1,25 @@
 import React, { useState } from 'react';
+import Register from './components/Register';
+import Login from './components/Login';
+import PdfUploader from './components/PdfUploader';
+import SpendingTrends from './components/SpendingTrends';
 
 const App: React.FC = () => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [insights, setInsights] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setSelectedFile(event.target.files[0]);
-    }
-  };
-
-  const handleUpload = async () => {
-    if (!selectedFile) {
-      alert('Please select a file first.');
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('file', selectedFile);
-
-    try {
-      setLoading(true);
-      const response = await fetch('http://localhost:8000/process-transactions', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Upload failed');
-      }
-
-      const data = await response.json();
-      setInsights(data.insights);
-    } catch (error) {
-      console.error('Error uploading file:', error);
-      alert('Upload failed.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [view, setView] = useState<'register' | 'login' | 'upload' | 'trends'>('register');
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h1>AI Financial Analyzer</h1>
-
-      <input type="file" accept=".csv" onChange={handleFileChange} />
-      <button onClick={handleUpload} style={{ marginLeft: '1rem' }}>
-        Analyze
-      </button>
-
-      {loading && <p>Loading analysis...</p>}
-
-      {insights && (
-        <div style={{ marginTop: '2rem' }}>
-          <h2>AI Insights:</h2>
-          <p>{insights}</p>
-        </div>
-      )}
+      <h1>AI-Driven Financial Analyzer</h1>
+      <nav style={{ marginBottom: '1rem' }}>
+        <button onClick={() => setView('register')}>Register</button>
+        <button onClick={() => setView('login')}>Login</button>
+        <button onClick={() => setView('upload')}>Upload PDF</button>
+        <button onClick={() => setView('trends')}>Spending Trends</button>
+      </nav>
+      {view === 'register' && <Register />}
+      {view === 'login' && <Login />}
+      {view === 'upload' && <PdfUploader />}
+      {view === 'trends' && <SpendingTrends />}
     </div>
   );
 };
