@@ -13,7 +13,7 @@ const SpendingTrends: React.FC = () => {
       }
 
       try {
-        const response = await fetch('http://localhost:8080/spending-trends', {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/spending-trends`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

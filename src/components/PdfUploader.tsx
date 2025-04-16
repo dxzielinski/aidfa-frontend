@@ -20,7 +20,7 @@ const PdfUploader: React.FC = () => {
     formData.append('file', selectedFile);
 
     try {
-      const response = await fetch('http://localhost:8080/upload-pdf', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/upload-pdf`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`

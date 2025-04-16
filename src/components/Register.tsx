@@ -8,7 +8,7 @@ const Register: React.FC = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await fetch('http://localhost:8080/register', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ full_name: fullName, email, password })
