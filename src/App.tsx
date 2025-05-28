@@ -3,9 +3,12 @@ import Register from './components/Register';
 import Login from './components/Login';
 import PdfUploader from './components/PdfUploader';
 import SpendingTrends from './components/SpendingTrends';
+import SpendingAnalysis from './components/SpendingAnalysis';
+import Forecast from './components/Forecast';
+import PredictionHistory from './components/PredictionHistory';
 
 const App: React.FC = () => {
-  const [view, setView] = useState<'register' | 'login' | 'upload' | 'trends'>('register');
+  const [view, setView] = useState<'register' | 'login' | 'upload' | 'trends' | 'analysis' | 'forecast' | 'history'>('register');
 
   return (
     <div style={{ padding: '2rem' }}>
@@ -15,11 +18,18 @@ const App: React.FC = () => {
         <button onClick={() => setView('login')}>Login</button>
         <button onClick={() => setView('upload')}>Upload PDF</button>
         <button onClick={() => setView('trends')}>Spending Trends</button>
+        <button onClick={() => setView('analysis')}>Stored Analysis</button>
+        <button onClick={() => setView('forecast')}>Forecast</button>
+        <button onClick={() => setView('history')}>Prediction History</button>
       </nav>
+
       {view === 'register' && <Register />}
       {view === 'login' && <Login />}
       {view === 'upload' && <PdfUploader />}
       {view === 'trends' && <SpendingTrends />}
+      {view === 'analysis' && <SpendingAnalysis />}
+      {view === 'forecast' && <Forecast />}
+      {view === 'history' && <PredictionHistory />}
     </div>
   );
 };
