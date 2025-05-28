@@ -1,9 +1,9 @@
 name: 'Build Contaner and Push to Container Registry'
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
