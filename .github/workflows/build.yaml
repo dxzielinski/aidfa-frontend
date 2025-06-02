@@ -32,7 +32,7 @@ jobs:
 
       - name: 'Configure Docker for Google Cloud'
         run: |
-          echo "${{ secrets.ENV }}" | base64 -d > .env
+          echo "REACT_APP_BACKEND_URL=${{ secrets.REACT_APP_BACKEND_URL }}" >> .env
           gcloud auth configure-docker
 
       - name: 'Build and Push Container'
