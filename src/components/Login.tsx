@@ -14,6 +14,7 @@ const Login: React.FC = () => {
       });
 
       const data = await response.json();
+      localStorage.setItem('token', data.idToken);
       setMessage(data.message || 'Login successful!');
     } catch (error) {
       console.error(error);
