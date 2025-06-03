@@ -7,21 +7,14 @@ const Login: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+      const response = await fetch("https://backend-804472887420.europe-central2.run.app/login", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
       });
 
       const data = await response.json();
-      console.log('Login response:', data);
-
-      if (response.ok && data.idToken) {
-        localStorage.setItem('token', data.idToken);
-        setMessage('Login successful!');
-      } else {
-        setMessage(data.detail || 'Login failed.');
-      }
+      setMessage(data.message || 'Login successful!');
     } catch (error) {
       console.error(error);
       setMessage('Login failed.');
@@ -29,12 +22,27 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} /> <br />
-      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} /> <br />
-      <button onClick={handleLogin}>Login</button>
-      <p>{message}</p>
+    <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8 space-y-4">
+      <h2 className="text-2xl font-bold text-center text-indigo-700">Login</h2>
+      <input
+        type="email"
+        placeholder="Email"
+        className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300"
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300"
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button
+        onClick={handleLogin}
+        className="btn w-full"
+      >
+        Login
+      </button>
+      <p className="text-center text-sm text-gray-600">{message}</p>
     </div>
   );
 };
