@@ -13,7 +13,7 @@ const Forecast: React.FC = () => {
       }
 
       try {
-        const response = await fetch(`https://backend-804472887420.europe-central2.run.app/predictions/spending`, {
+        const response = await fetch(`https://aidfa-backend-804472887420.europe-central2.run.app/predictions/spending`, {
           headers: { Authorization: `Bearer ${token}` }
         });
 

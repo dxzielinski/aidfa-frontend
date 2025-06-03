@@ -8,7 +8,7 @@ const Register: React.FC = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await fetch("https://backend-804472887420.europe-central2.run.app/register", {
+      const response = await fetch("https://aidfa-backend-804472887420.europe-central2.run.app/register", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ full_name: fullName, email, password })

@@ -7,7 +7,7 @@ const Login: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("https://backend-804472887420.europe-central2.run.app/login", {
+      const response = await fetch("https://aidfa-backend-804472887420.europe-central2.run.app/login", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

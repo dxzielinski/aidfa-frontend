@@ -15,7 +15,7 @@ const PdfUploader: React.FC = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://backend-804472887420.europe-central2.run.app/upload-pdf', {
+      const response = await fetch('https://aidfa-backend-804472887420.europe-central2.run.app/upload-pdf', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token || ''}`,

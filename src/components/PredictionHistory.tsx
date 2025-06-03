@@ -13,7 +13,7 @@ const PredictionHistory: React.FC = () => {
       }
 
       try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/predictions/history`, {
+        const response = await fetch("https://aidfa-backend-804472887420.europe-central2.run.app/predictions/history", {
           headers: { Authorization: `Bearer ${token}` }
         });
 
